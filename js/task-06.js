@@ -2,18 +2,24 @@ const inputEl = document.querySelector("#validation-input")
 const requestOfSymbols = Number(inputEl.getAttribute('data-length'))
 
 const onInputElBlur = () => {
-if(requestOfSymbols === inputEl.value.length ) {
-    inputEl.classList.add("valid")
-} else { 
-    inputEl.classList.add("invalid")
-}}
+const removeClass = value => {inputEl.classList.remove(value)}
+const addClass = value => {inputEl.classList.add(value)}
 
-const onInputElFocus = () => {
-        inputEl.classList.remove("valid")
-        inputEl.classList.remove("invalid")
+    if(inputEl.value.length === 0){
+        removeClass("valid")
+        removeClass("invalid")
     }
+else if(requestOfSymbols === inputEl.value.length ) {
+    addClass("valid")
+    removeClass("invalid")
+} 
+else if(requestOfSymbols !== inputEl.value.length ) {
+    removeClass("valid")
+    addClass("invalid")
+}
+} 
 
 inputEl.addEventListener('blur', onInputElBlur);
-inputEl.addEventListener('focus', onInputElFocus);
+
 
 
